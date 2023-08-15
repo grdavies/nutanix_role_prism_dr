@@ -1,0 +1,17 @@
+---
+- name: Get current Prism DR Status
+  uri:
+    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/services/disaster_recovery/status"
+    method: GET
+    validate_certs: "{{ validate_certs }}"
+    body_format: json
+    status_code: 200
+    headers:
+      Authorization: "{{ nutanix_api_auth }}"
+  register: nutanix_prism_dr_state
+
+- name: Debug nutanix_prism_dr_current_state
+  debug:
+    var: nutanix_prism_dr_state
+  when:
+    - nutanix_debug
