@@ -11,11 +11,11 @@
 - name: Get Prism DR state
   include_tasks: get_state.yml
 
-- name: Check Prism DR Pre-Reqs
-  include_tasks: check_prereqs.yml
-  when:
-    - nutanix_prism_dr_state.service_enablement_status != "ENABLED"
-    - nutanix_prism_dr_enable | default(False)
+# - name: Check Prism DR Pre-Reqs
+#   include_tasks: check_prereqs.yml
+#   when:
+#     - nutanix_prism_dr_state.service_enablement_status != "ENABLED"
+#     - nutanix_prism_dr_enable | default(False)
 
 - name: Enable Prism DR
   include_tasks: enable_feature.yml
