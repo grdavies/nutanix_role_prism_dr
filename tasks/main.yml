@@ -14,17 +14,17 @@
 # - name: Check Prism DR Pre-Reqs
 #   include_tasks: check_prereqs.yml
 #   when:
-#     - nutanix_prism_dr_state.service_enablement_status != "ENABLED"
+#     - nutanix_prism_dr_state.json.service_enablement_status != "ENABLED"
 #     - nutanix_prism_dr_enable | default(False)
 
 - name: Enable Prism DR
   include_tasks: enable_feature.yml
   when:
-    - nutanix_prism_dr_state.service_enablement_status != "ENABLED"
+    - nutanix_prism_dr_state.json.service_enablement_status != "ENABLED"
     - nutanix_prism_dr_enable | default(False)
 
 - name: Disable Prism DR
   include_tasks: disable_feature.yml
   when:
-    - nutanix_prism_dr_state.service_enablement_status == "ENABLED"
+    - nutanix_prism_dr_state.json.service_enablement_status == "ENABLED"
     - nutanix_prism_dr_enable | default(True)
