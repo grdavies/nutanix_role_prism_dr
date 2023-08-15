@@ -10,8 +10,12 @@
       Authorization: "{{ nutanix_api_auth }}"
   register: nutanix_prism_dr_state
 
-- name: Debug nutanix_prism_dr_current_state
+- name: Debug nutanix_prism_dr_state
   debug:
     var: nutanix_prism_dr_state
   when:
     - nutanix_debug
+
+- name: Current status of Prism DR service(s)
+  debug:
+    msg: "Prism DR is currently in a '{{ nutanix_prism_dr_state.json.service_enablement_status }}' state."
